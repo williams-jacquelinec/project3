@@ -1,3 +1,5 @@
+! [BuildStatus] (https://github.com/williams-jacquelinec/Project3/workflows/Project3/badge.svg?event=push)
+
 # Project 3
 Minimum Spanning Trees
 
