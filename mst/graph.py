@@ -45,9 +45,10 @@ class Graph:
 
         # creating an object to reflect every vertex in the adj_mat
         all_vertices = list(range(vertices))
+        print("All vertices:", all_vertices)
 
         # creating a new matrix for MST to exist
-        mst_mat = np.array([[0 for column in range(vertices)] for row in range(vertices)])
+        self.mst = np.array([[0 for column in range(vertices)] for row in range(vertices)])
 
         # creating a priority queue to start out with
         # it is a list structured as such: [ (edge weight, start node, end node), etc.]
@@ -57,34 +58,43 @@ class Graph:
             if adj_mat[start][i] != 0:
                 element = adj_mat[start][i], start, i
                 queue.append(tuple(element))
-
+        print(queue)
         heapq.heapify(queue)
-
+        print(queue)
+        print(" ")
         # appending the start node to visited
         visited.append(start)
+        print("Visited:",visited)
 
 
         # begin the while statement
         while len(visited) != len(all_vertices):
 
             # pop the lowest weight edge from the queue
+            print("heap before popping:", queue)
             weight, vertex_start, vertex_end = heapq.heappop(queue)
-
+            print("heap after popping:", queue)
+            print(" ")
+            print("weight, vertex start, vertex end:", weight, vertex_start, vertex_end)
             # if dest vertex not in visited:
                 # add edge to mst matrix
                 # add dest vertex to visited list
                 # add outgoing edges of dest vertex to priority queue
 
             if vertex_end not in visited:
-                mst_mat[vertex_start][vertex_end] = weight
-                mst_mat[vertex_end][vertex_start] = weight
+                self.mst[vertex_start][vertex_end] = weight
+                self.mst[vertex_end][vertex_start] = weight
                 visited.append(vertex_end)
-                
+                print(" ")
+                print("Current MST:", self.mst)
+                print(" ")
                 for i in all_vertices:
                     # if adj_mat[vertex_end][i] != 0:
+                    print("heap before pushing:", queue)
                     heapq.heappush(queue, (adj_mat[vertex_end][i], vertex_end, i))
+                    print("heap after pushing:", queue)
 
 
-        self.mst = mst_mat
+        # self.mst = mst_mat
         # return self.mst
 
