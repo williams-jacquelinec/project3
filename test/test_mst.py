@@ -32,7 +32,7 @@ def check_mst(adj_mat: np.ndarray,
     for i in range(mst.shape[0]):
         for j in range(i+1):
             total += mst[i, j]
-    assert approx_equal(total, expected_weight) == False, 'Proposed MST has incorrect expected weight'
+    assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
 
     # my assertion is the the number of edges should not be the number of vertices (because an MST can not be cyclical)
     # but I am also asserting that they are always connected (every vertex should be visited)

@@ -47,7 +47,7 @@ class Graph:
         all_vertices = list(range(vertices))
 
         # creating a new matrix for MST to exist
-        mst_mat = [[0 for column in range(vertices)] for row in range(vertices)]
+        mst_mat = np.array([[0 for column in range(vertices)] for row in range(vertices)])
 
         # creating a priority queue to start out with
         # it is a list structured as such: [(start node, end node), edge weight), etc.]
@@ -55,17 +55,20 @@ class Graph:
         queue = []
         for i in range(0,vertices):
             if adj_mat[start][i] != 0:
-                element = (start, i), adj_mat[start][i]
+                element = adj_mat[start][i], (start, i)
                 queue.append(element)
+
+        heapq.heapify(queue)
 
         # appending the start node to visited
         visited.append(start)
+
 
         # begin the while statement
         while visited != all_vertices:
 
             # pop the lowest weight edge from the queue
-            vertex, weight = heapq.heappop(queue)
+            weight, vertex = heapq.heappop(queue)
 
             # if dest vertex not in visited:
                 # add edge to mst matrix
@@ -76,14 +79,31 @@ class Graph:
                 mst_mat[vertex[0]][vertex[1]] = weight
                 mst_mat[vertex[1]][vertex[0]] = weight
                 visited.append(vertex[1])
-                queue.clear()
-                start += 1
-                for i in range(0,vertices):
-                    if adj_mat[start][i] != 0:
-                        element = (start, i), adj_mat[start][i]
-                        queue.append(element)
+                
+                for i in all_vertices:
+                    if adj_mat[vertex[1]][i] != 0:
+                        heapq.heappush(queue, (adj_mat[vertex[1]][i], (vertex[1], i)))
 
-        
-        self.mst = np.array(mst_mat)
+
+                # start += 1
+                # for i in range(0,vertices):
+                #     if adj_mat[start][i] != 0:
+                #         element = (start, i), adj_mat[start][i]
+                #         queue.append(element)
+
+        self.mst = mst_mat
         return self.mst
+        # print(self.mst)
 
+#         approx_equal = abs(adj_mat - 0) < 0.0001
+
+#         total = 0
+#         for i in range(self.mst.shape[0]):
+#             for j in range(i+1):
+#                 total += self.mst[i, j]
+#         print(total)
+#         if total == abs(total - expected_weight
+#         approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
+
+
+# print(Graph('small.csv').construct_mst())
