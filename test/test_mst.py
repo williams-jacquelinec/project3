@@ -26,7 +26,7 @@ def check_mst(adj_mat: np.ndarray,
     """
     # my assertion is the the number of edges should not be the number of vertices (because an MST can not be cyclical)
     # but I am also asserting that they are always connected (every vertex should be visited)
-    mst_ = graph.Graph("data/small.csv").construct_mst()
+    mst_ = Graph("data/small.csv").construct_mst()
     edges = np.count_nonzero(mst_)/2  #accounting for symmetrical matrices
     assert mst_.shape[0] != edges
 
@@ -66,7 +66,7 @@ def test_mst_single_cell_data():
 def test_mst_student():
     """ TODO: Write at least one unit test for MST construction """
 
-    mst_graph = graph.Graph("/data/small.csv").construct_mst()
+    mst_graph = Graph("/data/small.csv").construct_mst()
     vertices = mst_graph.shape[0]
     for i in range(vertices):
         for j in range(vertices):
