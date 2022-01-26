@@ -65,7 +65,7 @@ class Graph:
 
 
         # begin the while statement
-        while visited != all_vertices:
+        while len(visited) != len(all_vertices):
 
             # pop the lowest weight edge from the queue
             weight, vertex_start, vertex_end = heapq.heappop(queue)
@@ -83,6 +83,7 @@ class Graph:
                 for i in all_vertices:
                     if adj_mat[vertex_end][i] != 0:
                         heapq.heappush(queue, (adj_mat[vertex_end][i], vertex_end, i))
+                # print(queue)
 
 
                 # start += 1
