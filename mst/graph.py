@@ -83,6 +83,6 @@ class Graph:
                         element = (start, i), adj_mat[start][i]
                         queue.append(element)
         
-        self.mst = numpy.array(mst_mat)
+        self.mst = np.array(mst_mat)
         return self.mst
 
