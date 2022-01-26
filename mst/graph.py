@@ -38,7 +38,9 @@ class Graph:
 
         # initiating the visited list and the adjacency matrix object
         visited = []
+        #adj_mat = pairwise_distances(self.adj_mat)
         adj_mat = self.adj_mat
+        
 
         # determining how many vertices there are by looking at the shape of the array
         vertices = adj_mat.shape[0]
@@ -107,4 +109,4 @@ class Graph:
 #         approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
 
 
-# print(Graph('small.csv').construct_mst())
+# print(Graph('slingshot_example.txt').construct_mst())
