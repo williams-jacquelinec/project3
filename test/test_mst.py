@@ -69,7 +69,8 @@ def test_mst_student():
 
     mst_graph = Graph("./data/small.csv")
     mst_graph.construct_mst()
-    vertices = mst_graph.shape[0]
+    vertices = mst_graph.adj_mat.shape[0]
+
     for i in range(vertices):
         for j in range(vertices):
             assert mst_graph[i][j] == mst_graph[j][i]
