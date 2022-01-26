@@ -67,11 +67,16 @@ def test_mst_single_cell_data():
 
 def test_mst_student():
     """ TODO: Write at least one unit test for MST construction """
-    pass
-    # mst_graph = Graph("./data/small.csv")
-    # mst_graph.construct_mst()
-    # vertices = mst_graph.adj_mat.shape[0]
+    # testing to see if both halves of the MST graph are symmetrical
+    
+    mst_graph = Graph("./data/small.csv")
+    mst_graph.construct_mst()
+    vertices = mst_graph.adj_mat.shape[0]
 
-    # for i in range(vertices):
-    #     for j in range(vertices):
-    #         assert mst_graph[i][j] == mst_graph[j][i]
+    half_1 = 0
+    half_2 = 0
+    for i in range(vertices):
+        for j in range(vertices):
+            half_1 += mst_graph.mst[i,j]
+            half_2 += mst_graph.mst[j,i]
+    assert half_1 == half_2
