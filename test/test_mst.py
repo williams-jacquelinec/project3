@@ -26,9 +26,6 @@ def check_mst(adj_mat: np.ndarray,
     """
     # my assertion is the the number of edges should not be the number of vertices (because an MST can not be cyclical)
     # but I am also asserting that they are always connected (every vertex should be visited)
-    mst_ = Graph("./data/small.csv").construct_mst()
-    edges = np.count_nonzero(mst_)/2  #accounting for symmetrical matrices
-    assert mst_.shape[0] != edges
 
     def approx_equal(a, b):
         return abs(a - b) < allowed_error
@@ -37,7 +34,11 @@ def check_mst(adj_mat: np.ndarray,
     for i in range(mst.shape[0]):
         for j in range(i+1):
             total += mst[i, j]
-    assert approx_equal(total, expected_weight) == False, 'Proposed MST has incorrect expected weight'
+    assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
+
+    mst_ = Graph("./data/small.csv").construct_mst()
+    edges = np.count_nonzero(mst_)/2  #accounting for symmetrical matrices
+    assert mst_.shape[0] != edges
 
 
 def test_mst_small():
