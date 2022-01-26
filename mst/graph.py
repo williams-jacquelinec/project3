@@ -77,7 +77,7 @@ class Graph:
                 mst_mat[vertex[1]][vertex[0]] = weight
                 visited.append(vertex[1])
 
-                for neighbor in range(all_vertices):
+                for neighbor in all_vertices:
                     heapq.heappush(queue, ((vertex[1], neighbor), adj_mat[vertex[1]][neighbor]))
 
         
