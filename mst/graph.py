@@ -81,10 +81,10 @@ class Graph:
                 visited.append(vertex_end)
                 
                 for i in all_vertices:
-                    if adj_mat[vertex_end][i] != 0:
-                        heapq.heappush(queue, (adj_mat[vertex_end][i], vertex_end, i))
+                    # if adj_mat[vertex_end][i] != 0:
+                    heapq.heappush(queue, (adj_mat[vertex_end][i], vertex_end, i))
 
 
         self.mst = mst_mat
-        return self.mst
+        # return self.mst
 
