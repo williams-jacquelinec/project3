@@ -35,12 +35,12 @@ def check_mst(adj_mat: np.ndarray,
 
     total = 0
     for i in range(mst.shape[0]):
-        total += sum(mst[i])
-    assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
-
-    #     for j in range(i+1):
-    #         total += mst[i, j]
+    #     total += sum(mst[i])
     # assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
+
+        for j in range(i+1):
+            total += mst[i, j]
+    assert approx_equal(total, expected_weight) == False, 'Proposed MST has incorrect expected weight'
 
 
 def test_mst_small():
