@@ -9,7 +9,7 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-dependencies = ["pytest", "numpy", "typing"]
+dependencies = ["pytest", "numpy", "Union"]
 
 [project.urls]
 Home = "https://github.com/williams-jacquelinec/project3"
