@@ -50,12 +50,12 @@ class Graph:
         mst_mat = np.array([[0 for column in range(vertices)] for row in range(vertices)])
 
         # creating a priority queue to start out with
-        # it is a list structured as such: [(start node, end node), edge weight), etc.]
+        # it is a list structured as such: [ (edge weight, start node, end node), etc.]
         start = 0
         queue = []
         for i in range(0,vertices):
             if adj_mat[start][i] != 0:
-                element = adj_mat[start][i], (start, i)
+                element = tuple(adj_mat[start][i], start, i)
                 queue.append(element)
 
         heapq.heapify(queue)
@@ -68,21 +68,21 @@ class Graph:
         while visited != all_vertices:
 
             # pop the lowest weight edge from the queue
-            weight, vertex = heapq.heappop(queue)
+            weight, vertex_start, vertex_end = heapq.heappop(queue)
 
             # if dest vertex not in visited:
                 # add edge to mst matrix
                 # add dest vertex to visited list
                 # add outgoing edges of dest vertex to priority queue
 
-            if vertex[1] not in visited:
-                mst_mat[vertex[0]][vertex[1]] = weight
-                mst_mat[vertex[1]][vertex[0]] = weight
-                visited.append(vertex[1])
+            if vertex_end not in visited:
+                mst_mat[vertex_start][vertex_end] = weight
+                mst_mat[vertex_end][vertex_start] = weight
+                visited.append(vertex_end)
                 
                 for i in all_vertices:
-                    if adj_mat[vertex[1]][i] != 0:
-                        heapq.heappush(queue, (adj_mat[vertex[1]][i], (vertex[1], i)))
+                    if adj_mat[vertex_end][i] != 0:
+                        heapq.heappush(queue, (adj_mat[vertex_end][i], vertex_end, i))
 
 
                 # start += 1
