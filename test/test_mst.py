@@ -24,6 +24,12 @@ def check_mst(adj_mat: np.ndarray,
         For example, how many edges should a minimum spanning tree have? Are minimum spanning trees
         always connected? What else can you think of?
     """
+    # my assertion is the the number of edges should not be the number of vertices (because an MST can not be cyclical)
+    # but I am also asserting that they are always connected (every vertex should be visited)
+    mst_ = graph.Graph("data/small.csv").construct_mst()
+    edges = np.count_nonzero(mst_)/2  #accounting for symmetrical matrices
+    assert mst_.shape[0] != edges
+
     def approx_equal(a, b):
         return abs(a - b) < allowed_error
 
@@ -59,4 +65,9 @@ def test_mst_single_cell_data():
 
 def test_mst_student():
     """ TODO: Write at least one unit test for MST construction """
-    pass
+
+    mst_graph = graph.Graph("/data/small.csv").construct_mst()
+    vertices = mst_graph.shape[0]
+    for i in range(vertices):
+        for j in range(vertices):
+            assert mst_graph[i][j] == mst_graph[j][i]

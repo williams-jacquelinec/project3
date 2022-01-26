@@ -35,4 +35,54 @@ class Graph:
         We highly encourage the use of priority queues in your implementation. See the heapq
         module, particularly the `heapify`, `heappop`, and `heappush` functions.
         """
-        self.mst = 'TODO'
+
+        # initiating the visited list and the adjacency matrix object
+        visited = []
+        adj_mat = self.adj_mat
+
+        # determining how many vertices there are by looking at the shape of the array
+        vertices = adj_mat.shape[0]
+
+        # creating an object to reflect every vertex in the adj_mat
+        all_vertices = list(range(vertices))
+
+        # creating a new matrix for MST to exist
+        mst_mat = [[0 for column in range(vertices)] for row in range(vertices)]
+
+        # creating a priority queue to start out with
+        # it is a list structured as such: [(start node, end node), edge weight), etc.]
+        start = 0
+        queue = []
+        for i in range(0,vertices):
+            if adj_mat[start][i] != 0:
+                element = (start, i), adj_mat[start][i]
+                queue.append(element)
+
+        # appending the start node to visited
+        visited.append(start)
+
+        # begin the while statement
+        while visited != all_vertices:
+
+            # pop the lowest weight edge from the queue
+            vertex, weight = heapq.heappop(queue)
+
+            # if dest vertex not in visited:
+                # add edge to mst matrix
+                # add dest vertex to visited list
+                # add outgoing edges of dest vertex to priority queue
+
+            if vertex[1] not in visited:
+                mst_mat[vertex[0]][vertex[1]] = weight
+                mst_mat[vertex[1]][vertex[0]] = weight
+                visited.append(vertex[1])
+                queue.clear()
+                start += 1
+                for i in range(0,vertices):
+                    if adj_mat[start][i] != 0:
+                        element = (start, i), adj_mat[start][i]
+                        queue.append(element)
+        
+        self.mst = mst_mat
+        return self.mst
+
