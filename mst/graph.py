@@ -38,9 +38,7 @@ class Graph:
 
         # initiating the visited list and the adjacency matrix object
         visited = []
-        #adj_mat = pairwise_distances(self.adj_mat)
         adj_mat = self.adj_mat
-        
 
         # determining how many vertices there are by looking at the shape of the array
         vertices = adj_mat.shape[0]
@@ -85,28 +83,8 @@ class Graph:
                 for i in all_vertices:
                     if adj_mat[vertex_end][i] != 0:
                         heapq.heappush(queue, (adj_mat[vertex_end][i], vertex_end, i))
-                # print(queue)
 
-
-                # start += 1
-                # for i in range(0,vertices):
-                #     if adj_mat[start][i] != 0:
-                #         element = (start, i), adj_mat[start][i]
-                #         queue.append(element)
 
         self.mst = mst_mat
         return self.mst
-        # print(self.mst)
 
-#         approx_equal = abs(adj_mat - 0) < 0.0001
-
-#         total = 0
-#         for i in range(self.mst.shape[0]):
-#             for j in range(i+1):
-#                 total += self.mst[i, j]
-#         print(total)
-#         if total == abs(total - expected_weight
-#         approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
-
-
-# print(Graph('slingshot_example.txt').construct_mst())

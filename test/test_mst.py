@@ -30,10 +30,8 @@ def check_mst(adj_mat: np.ndarray,
 
     total = 0
     for i in range(mst.shape[0]):
-        total += sum(mst[i])
-    
-        # for j in range(i+1):
-        #     total += mst[i, j]
+        for j in range(i+1):
+            total += mst[i, j]
     assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
 
     # my assertion is the the number of edges should not be the number of vertices (because an MST can not be cyclical)
