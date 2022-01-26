@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "mst"
+name = "project3"
 authors = [{name = "Jacqueline Williams", email = "jacqueline.williams@ucsf.edu"}]
 readme = "README.md"
 license = {file = "LICENSE"}
