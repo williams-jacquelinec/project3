@@ -55,8 +55,8 @@ class Graph:
         queue = []
         for i in range(0,vertices):
             if adj_mat[start][i] != 0:
-                element = tuple(adj_mat[start][i], start, i)
-                queue.append(element)
+                element = adj_mat[start][i], start, i
+                queue.append(tuple(element))
 
         heapq.heapify(queue)
 
