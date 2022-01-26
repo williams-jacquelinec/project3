@@ -67,7 +67,8 @@ def test_mst_single_cell_data():
 def test_mst_student():
     """ TODO: Write at least one unit test for MST construction """
 
-    mst_graph = Graph("./data/small.csv").construct_mst()
+    mst_graph = Graph("./data/small.csv")
+    mst_graph.construct_mst()
     vertices = mst_graph.shape[0]
     for i in range(vertices):
         for j in range(vertices):
